@@ -1,0 +1,460 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D7E3734F-98B1-4BC0-B4A0-0182C1D20585}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>JLClient</RootNamespace>
+    <AssemblyName>JLClient</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AvalonDock, Version=4.70.1.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dirkster.AvalonDock.4.70.1\lib\net40\AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Xaml.Behaviors.Wpf.1.1.39\lib\net45\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Core\Arguments\CourseSelectedArgument.cs" />
+    <Compile Include="Core\Arguments\InnerModels\TestMod.cs" />
+    <Compile Include="Core\Arguments\JointLessonArgument.cs" />
+    <Compile Include="Core\Arguments\ManualProcessChangeArgument.cs" />
+    <Compile Include="Core\Arguments\TestCompleteArgument.cs" />
+    <Compile Include="Core\Behaviors\ClickOpensContextMenuBehavior.cs" />
+    <Compile Include="Core\Behaviors\IgnoreMouseWheelBehavior.cs" />
+    <Compile Include="Core\Consts.cs" />
+    <Compile Include="Core\Converters\EnumDescriptionTypeConverter.cs" />
+    <Compile Include="Core\Arguments\OnStartTestArgument.cs" />
+    <Compile Include="Core\Converters\IsLastItemConverter.cs" />
+    <Compile Include="Core\Converters\IsProgressedConverter.cs" />
+    <Compile Include="Core\Manual\WordSplitType.cs" />
+    <Compile Include="Core\Notifications\SystemToastManager.cs" />
+    <Compile Include="Core\Utility\CacheUtility.cs" />
+    <Compile Include="Core\Utility\FileUtility.cs" />
+    <Compile Include="Core\Utility\InnerModels\CacheType.cs" />
+    <Compile Include="Core\Utility\InnerModels\UploadFileResponse.cs" />
+    <Compile Include="Core\Utility\ManualUtility.cs" />
+    <Compile Include="Core\VisualComponents\ButtonWithImage.cs" />
+    <Compile Include="Core\VisualComponents\JLWizardProgressBar.cs" />
+    <Compile Include="Core\VisualComponents\RoundedIconWithName.cs" />
+    <Compile Include="MVVM\Model\Components\Base\PdfViewerHandler.cs" />
+    <Compile Include="MVVM\Model\Components\Base\ViewerMode.cs" />
+    <Compile Include="MVVM\Model\Components\Course\CourseDescriptionhandler.cs" />
+    <Compile Include="MVVM\Model\Components\Lesson\LessonType.cs" />
+    <Compile Include="MVVM\Model\Components\Profile\InnerModels\CourseData.cs" />
+    <Compile Include="MVVM\Model\Components\Profile\InnerModels\UserData.cs" />
+    <Compile Include="MVVM\Model\Components\Profile\MyCourseCardHandler.cs" />
+    <Compile Include="MVVM\Model\Components\Profile\UserCardHandler.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Auth\Components\LoginCardViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Base\PdfViewerViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Base\StepProgressViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Base\TestCardViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Course\Components\CourseDescriptionViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Editor\Components\ManualTreeViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Profile\Components\AchievementsCardViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Profile\Components\MyCoursesCardViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Profile\Components\StatisticCardViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Profile\Components\UserCardViewModel.cs" />
+    <Compile Include="MVVM\View\Base\WebBrowserUtility.cs" />
+    <Compile Include="MVVM\View\Components\Base\LoadSpinner.xaml.cs">
+      <DependentUpon>LoadSpinner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Base\PdfViewerCard.xaml.cs">
+      <DependentUpon>PdfViewerCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Base\StepProgress.xaml.cs">
+      <DependentUpon>StepProgress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Base\TestCard.xaml.cs">
+      <DependentUpon>TestCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Course\Components\CourseDescriptionCard.xaml.cs">
+      <DependentUpon>CourseDescriptionCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Editor\Components\ManualTreeCard.xaml.cs">
+      <DependentUpon>ManualTreeCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Profile\Components\AchievementsCard.xaml.cs">
+      <DependentUpon>AchievementsCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Profile\Components\MyCoursesCard.xaml.cs">
+      <DependentUpon>MyCoursesCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Profile\Components\StatisticCard.xaml.cs">
+      <DependentUpon>StatisticCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Profile\Components\UserCard.xaml.cs">
+      <DependentUpon>UserCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Arguments\LoginEventArg.cs" />
+    <Compile Include="UserControls\InfoCard.xaml.cs">
+      <DependentUpon>InfoCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Auth\Components\LoginCard.xaml.cs">
+      <DependentUpon>LoginCard.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MVVM\View\Components\Auth\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Base\LoadSpinner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Base\PdfViewerCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Base\StepProgress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Base\TestCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Course\Components\CourseDescriptionCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Course\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Editor\Components\ManualTreeCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Editor\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Lesson\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Profile\Components\AchievementsCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Profile\Components\MyCoursesCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Profile\Components\StatisticCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Profile\Components\UserCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Profile\Index.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ApiModels\Response\Editor\GetCourseManualResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Editor\GetMaterialResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Editor\GetMyMaterialsResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Editor\NewMaterialResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Editor\UpdateMaterialResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\IResponse.cs" />
+    <Compile Include="Core\ApiModels\Request\Auth\LoginRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\Editor\NewMaterialRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\Editor\UpdateMaterialRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\Teacher\ChangeLessonManualPageRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\Teacher\CloseLessonRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\Teacher\StartSyncLessonRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\AddNewFileRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\ChangeSRSLessonManualPageRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\CloseSRSLessonRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\CreateRemoteAccessRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\GetManualFilesRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\GetRemoteAccessDataRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\JoinLessonRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\LeaveLessonRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\LoadNoteRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\SendNoteRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\StartSRSLessonRequest.cs" />
+    <Compile Include="Core\ApiModels\Request\User\UpHandRequest.cs" />
+    <Compile Include="Core\ApiModels\Response\Auth\LoginResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Auth\LogoutResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\ResponseBase.cs" />
+    <Compile Include="Core\ApiModels\Response\Teacher\ChangeLessonManualPageResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Teacher\CloseLessonResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\Teacher\StartSyncLessonResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\AddNewFileResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\ChangeSRSLessonManualPageResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\CloseSRSLessonResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\CreateRemoteAccessResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\GetCourseDataResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\GetFileResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\GetManualFilesResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\GetMyCoursesResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\GetRemoteAccessDataResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\GetRemoteAccessListResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\JoinLessonResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\LeaveLessonResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\LoadNoteResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\RegisterSignalConnectionResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\SendNoteResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\StartSRSLessonResponse.cs" />
+    <Compile Include="Core\ApiModels\Response\User\UpHandResponse.cs" />
+    <Compile Include="Core\Http\RequestMethod.cs" />
+    <Compile Include="Core\Http\RequestModel.cs" />
+    <Compile Include="Core\Http\RequestSender.cs" />
+    <Compile Include="Core\Manual\Author.cs" />
+    <Compile Include="Core\Manual\Block.cs" />
+    <Compile Include="Core\Manual\BlockAccess.cs" />
+    <Compile Include="Core\Manual\BlockType.cs" />
+    <Compile Include="Core\Manual\IBlock.cs" />
+    <Compile Include="Core\Manual\ManualData.cs" />
+    <Compile Include="Core\Manual\ManualNode.cs" />
+    <Compile Include="Core\Manual\MaterialDate.cs" />
+    <Compile Include="Core\Manual\Page.cs" />
+    <Compile Include="Core\Manual\PageTest.cs" />
+    <Compile Include="Core\Manual\PageType.cs" />
+    <Compile Include="Core\Observer\ObservableObject.cs" />
+    <Compile Include="Core\Observer\RelayCommand.cs" />
+    <Compile Include="Core\Observer\WindowEvent.cs" />
+    <Compile Include="Core\Observer\WindowEventType.cs" />
+    <Compile Include="Core\PersistModels\AuthData.cs" />
+    <Compile Include="Core\PersistModels\Course.cs" />
+    <Compile Include="Core\PersistModels\CourseTeacher.cs" />
+    <Compile Include="Core\PersistModels\Discipline.cs" />
+    <Compile Include="Core\PersistModels\FileData.cs" />
+    <Compile Include="Core\PersistModels\Group.cs" />
+    <Compile Include="Core\PersistModels\GroupAtCourse.cs" />
+    <Compile Include="Core\PersistModels\Lesson.cs" />
+    <Compile Include="Core\PersistModels\LessonTabel.cs" />
+    <Compile Include="Core\PersistModels\Manual.cs" />
+    <Compile Include="Core\PersistModels\Role.cs" />
+    <Compile Include="Core\PersistModels\SignalUserConnection.cs" />
+    <Compile Include="Core\PersistModels\Statistic.cs" />
+    <Compile Include="Core\PersistModels\Test.cs" />
+    <Compile Include="Core\PersistModels\User.cs" />
+    <Compile Include="Core\PersistModels\UserGroup.cs" />
+    <Compile Include="Core\PersistModels\UserRemoteAccess.cs" />
+    <Compile Include="Core\PersistModels\UserRole.cs" />
+    <Compile Include="Core\PersistModels\WorkBook.cs" />
+    <Compile Include="Core\Settings\UserSettings.cs" />
+    <Compile Include="MVVM\Model\Components\Auth\AuthHandler.cs" />
+    <Compile Include="MVVM\Model\Components\Course\CourseHandler.cs" />
+    <Compile Include="MVVM\Model\Components\Editor\EditorHandler.cs" />
+    <Compile Include="MVVM\Model\Components\Lesson\LessonHandler.cs" />
+    <Compile Include="MVVM\Model\Components\Profile\ProfileHandler.cs" />
+    <Compile Include="MVVM\Model\MainHandler.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Auth\AuthWindowViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Course\CourseWindowViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Editor\EditorWindowViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Lesson\LessonWindowViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\Components\Profile\ProfileWindowViewModel.cs" />
+    <Compile Include="MVVM\ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="MVVM\View\Base\Consts.cs" />
+    <Compile Include="MVVM\View\Base\StyleThemes.cs" />
+    <Compile Include="MVVM\View\Components\Auth\Index.xaml.cs">
+      <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Course\Index.xaml.cs">
+      <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Editor\Index.xaml.cs">
+      <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Lesson\Index.xaml.cs">
+      <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\Components\Profile\Index.xaml.cs">
+      <DependentUpon>Index.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MVVM\View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Theme\icon-base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Theme\jl-buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-dropbox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-list.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-other.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-scrollviewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-text.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\colors-base.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\colors-dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Theme\jl-tree.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\InfoCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MVVM\View\Components\Auth\Components\LoginCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Res\Fonts\Golos-UI_Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AvalonThemes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\base_theme_btn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\dark_theme_btn.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\background-dark.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Res\Images\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Office.Interop.Word">
+      <Version>15.0.4797.1004</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>6.0.5</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\course-template.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Res\Images\user-template.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,140 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style TargetType="{x:Type TreeViewItem}" x:Key="tree-item">
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="IsExpanded" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource control-foreground-primary-brush}"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource ExpanderStyle}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TreeViewItem}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="19" Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        
+                        <ToggleButton 
+                            x:Name="Expander" 
+                            Margin="0 0 10 0"
+                            Style="{DynamicResource ExpanderStyle}" 
+                            ClickMode="Press" 
+                            IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                            />
+
+                        <Border 
+                            x:Name="Bd" 
+                            MinWidth="200"
+                            SnapsToDevicePixels="true" 
+                            Grid.Column="1" 
+                            Background="{DynamicResource control-background-primary-brush}" 
+                            CornerRadius="5"
+                            BorderThickness="1">
+                            <ContentPresenter 
+                                x:Name="PART_Header" 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                ContentSource="Header"/>
+                        </Border>
+                        
+                        <ItemsPresenter 
+                            x:Name="ItemsHost" 
+                            Grid.Column="1" 
+                            Grid.ColumnSpan="2" 
+                            Grid.Row="1"/>
+                    </Grid>
+                    
+                    <ControlTemplate.Triggers>
+                        
+                        <Trigger Property="IsExpanded" Value="false">
+                            <Setter Property="Visibility" TargetName="ItemsHost" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="HasItems" Value="false">
+                            <Setter Property="Visibility" TargetName="Expander" Value="Hidden"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource control-background-primary-highlight-brush}"/>
+                        </Trigger>
+                        
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="VirtualizingStackPanel.IsVirtualizing" Value="true">
+                <Setter Property="ItemsPanel">
+                    <Setter.Value>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="ExpanderStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="IsEnabled" Value="True" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Cursor" Value="Hand"/>
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    
+                    <Grid x:Name="Button" HorizontalAlignment="Center" VerticalAlignment="Center" Width="32" Height="32">
+
+                        <Rectangle 
+                            Stroke="#FFFFFF" 
+                            HorizontalAlignment="Stretch" 
+                            VerticalAlignment="Stretch" Width="Auto" Height="Auto" 
+                            RadiusX="3" 
+                            RadiusY="3" 
+                            Fill="{DynamicResource control-border-primary-brush}" />
+
+                        <Rectangle 
+                            x:Name="CollapsedVisual" 
+                            HorizontalAlignment="Left" 
+                            VerticalAlignment="Top" 
+                            Width="3" 
+                            Height="16" 
+                            RadiusX="0" 
+                            RadiusY="0" 
+                            Fill="#FFFFFF" 
+                            Margin="14,8,0,0" />
+                        
+                        <Rectangle 
+                            RadiusX="0" 
+                            RadiusY="0" 
+                            Fill="#FFFFFF" 
+                            HorizontalAlignment="Left" 
+                            Margin="8,14,0,0" 
+                            VerticalAlignment="Top" 
+                            Width="16" 
+                            Height="3" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" TargetName="CollapsedVisual" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter Property="Visibility" TargetName="CollapsedVisual" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,89 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Общие -->
+    <Color x:Key="main-background">#f6f6f6</Color>
+    <Color x:Key="main-foreground">#4f3e4c</Color>
+    
+    <SolidColorBrush x:Key="main-background-brush" Color="{StaticResource main-background}"/>
+    <SolidColorBrush x:Key="main-foreground-brush" Color="{StaticResource main-foreground}"/>
+    
+    <!-- Иконки -->
+    <Color x:Key="icon-background">#1e866f</Color>
+    <SolidColorBrush x:Key="icon-background-brush" Color="{StaticResource icon-background}"/>
+    
+    <!-- Панели -->
+    <Color x:Key="panel-border">#000000</Color>
+    <Color x:Key="panel-header-background">#e7e7e7</Color>
+    <Color x:Key="panel-header-background-disabled">#e7e7e7</Color>
+    <Color x:Key="panel-header-foreground">#000000</Color>
+    <Color x:Key="panel-body-background">#e7e7e7</Color>
+    <Color x:Key="panel-body-foreground">#000000</Color>
+    <Color x:Key="panel-body-background-disabled">#e7e7e7</Color>
+
+    <SolidColorBrush x:Key="panel-border-brush" Color="{StaticResource panel-border}"/>
+    <SolidColorBrush x:Key="panel-header-background-brush" Color="{StaticResource panel-header-background}"/>
+    <SolidColorBrush x:Key="panel-header-background-disabled-brush" Color="{StaticResource panel-header-background-disabled}"/>
+    <SolidColorBrush x:Key="panel-header-foreground-brush" Color="{StaticResource panel-header-foreground}"/>
+    <SolidColorBrush x:Key="panel-body-background-brush" Color="{StaticResource panel-body-background}"/>
+    <SolidColorBrush x:Key="panel-body-background-disabled-brush" Color="{StaticResource panel-body-background-disabled}"/>
+    <SolidColorBrush x:Key="panel-body-foreground-brush" Color="{StaticResource panel-body-foreground}"/>
+
+    <!-- Меню -->
+    <Color x:Key="menu-foreground">#edfff2</Color>
+    <Color x:Key="menu-background">#ffffff</Color>
+    <Color x:Key="menu-item-background">#1e866f</Color>
+    <Color x:Key="menu-item-foreground">#ffffff</Color>
+    <Color x:Key="menu-background-highlight">#23d1ae</Color>
+
+    <SolidColorBrush x:Key="menu-foreground-brush" Color="{StaticResource menu-foreground}"/>
+    <SolidColorBrush x:Key="menu-item-background-brush" Color="{StaticResource menu-item-background}"/>
+    <SolidColorBrush x:Key="menu-item-foreground-brush" Color="{StaticResource menu-item-foreground}"/>
+    <SolidColorBrush x:Key="menu-background-brush" Color="{StaticResource menu-background}"/>
+    <SolidColorBrush x:Key="menu-background-highlight-brush" Color="{StaticResource menu-background-highlight}"/>
+
+    <!-- Контроль -->
+    <Color x:Key="control-background-primary">#23d1ae</Color>
+    <Color x:Key="control-background-primary-disabled">#a4f3e3</Color>
+    <Color x:Key="control-background-primary-highlight">#24c6a5</Color>
+    <Color x:Key="control-background-primary-pressed">#1e866f</Color>
+    <Color x:Key="control-foreground-primary">#ffffff</Color>
+    <Color x:Key="control-foreground-primary-highlight">#ffffff</Color>
+    <Color x:Key="control-border-primary">#135949</Color>
+
+    <Color x:Key="control-background-secondary">#ffffff</Color>
+    <Color x:Key="control-border-secondary">#1e866f</Color>
+    <Color x:Key="control-background-secondary-highlight">#1e866f</Color>
+    <Color x:Key="control-background-secondary-pressed">#ffffff</Color>
+    <Color x:Key="control-foreground-secondary">#1e866f</Color>
+    <Color x:Key="control-foreground-secondary-highlight">#ffffff</Color>
+
+    <Color x:Key="control-background-danger">#ba2525</Color>
+    <Color x:Key="control-background-danger-highlight">#ce2c2c</Color>
+    <Color x:Key="control-background-danger-pressed">#c92929</Color>
+    <Color x:Key="control-foreground-danger">#ffffff</Color>
+    <Color x:Key="control-foreground-danger-highlight">#ffffff</Color>
+
+    <SolidColorBrush x:Key="control-background-primary-brush" Color="{StaticResource control-background-primary}"/>
+    <SolidColorBrush x:Key="control-background-primary-disabled-brush" Color="{StaticResource control-background-primary-disabled}"/>
+    <SolidColorBrush x:Key="control-background-primary-highlight-brush" Color="{StaticResource control-background-primary-highlight}"/>
+    <SolidColorBrush x:Key="control-background-primary-pressed-brush" Color="{StaticResource control-background-primary-pressed}"/>
+    <SolidColorBrush x:Key="control-foreground-primary-brush" Color="{StaticResource control-foreground-primary}"/>
+    <SolidColorBrush x:Key="control-foreground-primary-highlight-brush" Color="{StaticResource control-foreground-primary-highlight}"/>
+    <SolidColorBrush x:Key="control-border-primary-brush" Color="{StaticResource control-border-primary}"/>
+
+    <SolidColorBrush x:Key="control-background-secondary-brush" Color="{StaticResource control-background-secondary}"/>
+    <SolidColorBrush x:Key="control-background-secondary-highlight-brush" Color="{StaticResource control-background-secondary-highlight}"/>
+    <SolidColorBrush x:Key="control-background-secondary-pressed-brush" Color="{StaticResource control-background-secondary-pressed}"/>
+    <SolidColorBrush x:Key="control-foreground-secondary-brush" Color="{StaticResource control-foreground-secondary}"/>
+    <SolidColorBrush x:Key="control-foreground-secondary-highlight-brush" Color="{StaticResource control-foreground-secondary-highlight}"/>
+    <SolidColorBrush x:Key="control-border-secondary-brush" Color="{StaticResource control-border-secondary}"/>
+
+    <SolidColorBrush x:Key="control-background-danger-brush" Color="{StaticResource control-background-danger}"/>
+    <SolidColorBrush x:Key="control-background-danger-highlight-brush" Color="{StaticResource control-background-danger-highlight}"/>
+    <SolidColorBrush x:Key="control-background-danger-pressed-brush" Color="{StaticResource control-background-danger-pressed}"/>
+    <SolidColorBrush x:Key="control-foreground-danger-brush" Color="{StaticResource control-foreground-danger}"/>
+    <SolidColorBrush x:Key="control-foreground-danger-highlight-brush" Color="{StaticResource control-foreground-danger-highlight}"/>
+
+
+</ResourceDictionary>

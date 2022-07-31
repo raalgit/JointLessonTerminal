@@ -1,0 +1,116 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <!-- Заготовки карт -->
+    <Style TargetType="{x:Type Label}" x:Key="card-header">
+        <Setter Property="FontFamily" Value="../../Res/Fonts/#Golos-UI_Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource main-foreground-brush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="26" />
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <!-- метки карт -->
+    <Style TargetType="{x:Type Label}" x:Key="card-label">
+        <Setter Property="FontFamily" Value="../../Res/Fonts/#Golos-UI_Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource main-foreground-brush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontSize" Value="22" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="card-sublabel">
+        <Setter Property="FontFamily" Value="../../Res/Fonts/#Golos-UI_Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource main-foreground-brush}" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="FontSize" Value="12" />
+    </Style>
+
+    <Style TargetType="{x:Type Label}" x:Key="card-label-error">
+        <Setter Property="FontFamily" Value="../../Res/Fonts/#Golos-UI_Medium" />
+        <Setter Property="Foreground" Value="Red" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="16" />
+    </Style>
+
+
+    <!-- Текст -->
+    <Style TargetType="{x:Type TextBox}" x:Key="card-textbox">
+        <Setter Property="FontFamily" Value="../../Res/Fonts/#Golos-UI_Medium" />
+        <Setter Property="Foreground" Value="{DynamicResource main-foreground-brush}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="AllowDrop" Value="True" />
+        <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
+        <Setter Property="BorderThickness" Value="0 0 0 2" />
+        <Setter Property="BorderBrush" Value="{DynamicResource main-foreground-brush}" />
+        <Setter Property="Padding" Value="6 3" />
+        <Setter Property="Cursor" Value="IBeam" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border
+                        x:Name="textborder"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="3"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        SnapsToDevicePixels="True">
+                        <Grid Margin="{TemplateBinding Padding}">
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost"
+                                MinWidth="120"
+                                Focusable="False" 
+                                HorizontalScrollBarVisibility="Hidden" 
+                                VerticalScrollBarVisibility="Hidden"
+                                Margin="-2 2"/>
+                            <Label 
+                                x:Name="WaterMarkerLabel" 
+                                Content="{TemplateBinding Tag}"
+                                FontWeight="{TemplateBinding FontWeight}" 
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Visibility="Collapsed"
+                                Foreground="{TemplateBinding Foreground}"
+                                Padding="{TemplateBinding Padding}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="Text" Value="" />
+                            </MultiTrigger.Conditions>
+                            <Setter 
+                                Property="Visibility"
+                                TargetName="WaterMarkerLabel"
+                                Value="Visible" />
+                            <Setter
+                                Property="Foreground"
+                                TargetName="WaterMarkerLabel"
+                                Value="{DynamicResource main-foreground-brush}"/>
+                            <Setter
+                                Property="FontWeight"
+                                TargetName="WaterMarkerLabel"
+                                Value="Normal"/>
+                        </MultiTrigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource control-border-primary-brush}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource control-border-primary-brush}" /> 
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

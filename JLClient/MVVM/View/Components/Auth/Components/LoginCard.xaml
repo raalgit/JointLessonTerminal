@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="JLClient.MVVM.View.Auth.Components.LoginCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModel="clr-namespace:JLClient.MVVM.ViewModel.Components.Auth.Components"
+             xmlns:base="clr-namespace:JLClient.MVVM.View.Components.Base"
+             d:DataContext="{d:DesignInstance Type=viewModel:LoginCardViewModel}"
+             mc:Ignorable="d" 
+             Width="400" Height="500">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+        <InverseBoolToVisibilityConverter x:Key="InvBoolToVisConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Grid.Loaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="-100,0,100,0" />
+                            <SplineThicknessKeyFrame KeyTime="00:00:00.6" Value="0,0,0,0" />
+                        </ThicknessAnimationUsingKeyFrames>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" BeginTime="00:00:00">
+                            <LinearDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                            <LinearDoubleKeyFrame KeyTime="00:00:00.6" Value="1" />
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+
+        <Grid Margin="10">
+            <Border Background="{DynamicResource panel-body-background-brush}" CornerRadius="10">
+                <Border.Effect>
+                    <DropShadowEffect />
+                </Border.Effect>
+                <StackPanel Visibility="{Binding IsLoading, Converter={StaticResource InvBoolToVisConverter}}" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+
+                    <Label Style="{StaticResource card-header}" Content="Авторизация" />
+
+                    <StackPanel Margin="0, 20, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        <TextBox Style="{StaticResource card-textbox}" Tag="Логин" Width="300" Text="{Binding Login, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding SendLoginData}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+
+                        <TextBox Style="{StaticResource card-textbox}" Tag="Пароль" Width="300" Text="{Binding Password, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                            <TextBox.InputBindings>
+                                <KeyBinding Key="Return" Command="{Binding SendLoginData}" />
+                            </TextBox.InputBindings>
+                        </TextBox>
+
+                        <Label Content="{Binding ErrorMessage}" Style="{StaticResource card-label-error}" />
+
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            
+        </Grid>
+
+        <base:LoadSpinner VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisConverter}}"/>
+    </Grid>
+</UserControl>

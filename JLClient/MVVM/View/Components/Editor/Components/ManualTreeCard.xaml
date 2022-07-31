@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="JLClient.MVVM.View.Components.Editor.Components.ManualTreeCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JLClient.MVVM.View.Components.Editor.Components"
+             xmlns:viewmodel="clr-namespace:JLClient.MVVM.ViewModel.Components.Editor.Components"
+             xmlns:types="clr-namespace:JLClient.MVVM.ViewModel.Components.Editor.Components"
+             xmlns:manual="clr-namespace:JLClient.Core.Manual"
+             xmlns:beh="clr-namespace:JLClient.Core.Behaviors"
+             xmlns:imIcon="clr-namespace:JLClient.Core.VisualComponents"
+             xmlns:i1="http://schemas.microsoft.com/xaml/behaviors"
+             d:DataContext="{d:DesignInstance Type=viewmodel:ManualTreeViewModel}"
+             mc:Ignorable="d"
+             Name="ucWindow">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+        <InverseBoolToVisibilityConverter x:Key="InvBoolToVisConverter"/>
+    </UserControl.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Visible" Style="{StaticResource jl-scroll}">
+            <Border BorderBrush="{DynamicResource panel-border-brush}" CornerRadius="10" Background="{DynamicResource panel-body-background-brush}">
+                <StackPanel>
+                    <Label Style="{StaticResource card-header}" Content="Учебный материал" />
+                    <StackPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource card-label}" Content="Название материала: "/>
+                        <TextBox Style="{StaticResource card-textbox}" Text="{Binding CurrentManualData.Name}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Style="{StaticResource card-label}" Content="Автор: "/>
+                        <TextBox Style="{StaticResource card-textbox}" Text="{Binding CurrentManualData.Author.name}"/>
+                    </StackPanel>
+                    
+
+                    <TreeView Background="Transparent" BorderThickness="0" ItemContainerStyle="{StaticResource tree-item}" ItemsSource="{Binding CurrentManualData.ManualRoot}">
+                        <i1:Interaction.Behaviors>
+                            <beh:IgnoreMouseWheelBehavior />
+                        </i1:Interaction.Behaviors>
+
+                        <TreeView.Resources>
+
+                            <HierarchicalDataTemplate DataType="{x:Type manual:ManualNode}" ItemsSource="{Binding Items}">
+
+                                <StackPanel Orientation="Horizontal" Tag="ItemPanel">
+
+                                    <StackPanel.ContextMenu>
+                                        <ContextMenu Style="{StaticResource jl-context-menu}" ItemContainerStyle="{StaticResource jl-context-menu-item}" Name="NodePanel">
+                                            <MenuItem Header="Поднять" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}"/>
+                                            <MenuItem Header="Опустить" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}"/>
+                                            <MenuItem Header="Добавить страницу" Command="{Binding AddNewPageCommand}" Visibility="{Binding CanAddPage, Converter={StaticResource BoolToVisConverter}}"/>
+                                            <MenuItem Header="Добавить блок" Command="{Binding AddNewNodeCommand}" Visibility="{Binding CanAddBlock, Converter={StaticResource BoolToVisConverter}}"/>
+                                            <MenuItem Header="Удалить" Command="{Binding RemoveNodeCommand}"/>
+                                        </ContextMenu>
+                                    </StackPanel.ContextMenu>
+
+                                    <Label Style="{StaticResource card-label}" Content="Название: "/>
+                                    <TextBox Style="{StaticResource card-textbox}" Text="{Binding title}"/>
+                                    <Separator Background="{DynamicResource control-border-primary-brush}" Margin="20 0 0 0" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                    <Button Content="Настройки" imIcon:ButtonWithImage.Icon="{StaticResource IconSettings}" Style="{StaticResource jl-img-button}" Name="SettingsButton" Click="SettingsButton_Click"/>
+                                    <Button Style="{StaticResource jl-secondary-button}" Content="Новая страница" Command="{Binding AddNewPageCommand}" Visibility="{Binding CanAddPage, Converter={StaticResource BoolToVisConverter}}"/>
+                                    <Button Style="{StaticResource jl-secondary-button}" Content="Новый блок" Command="{Binding AddNewNodeCommand}" Visibility="{Binding CanAddBlock, Converter={StaticResource BoolToVisConverter}}"/>
+                                    <Button Style="{StaticResource jl-danger-button}" Content="Удалить" Command="{Binding RemoveNodeCommand}" />
+
+                                </StackPanel>
+                            </HierarchicalDataTemplate>
+
+                            <DataTemplate DataType="{x:Type manual:Page}">
+
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <StackPanel.ContextMenu>
+                                            <ContextMenu Style="{StaticResource jl-context-menu}" ItemContainerStyle="{StaticResource jl-context-menu-item}">
+                                                <MenuItem Header="Поднять" Command="{Binding MoveUpCommand}" CommandParameter="{Binding}"/>
+                                                <MenuItem Header="Опустить" Command="{Binding MoveDownCommand}" CommandParameter="{Binding}"/>
+                                                <ComboBox SelectedItem="{Binding Type}" Style="{StaticResource combo-box}" ItemsSource="{Binding PageTypes}" />
+                                                <MenuItem Header="Прикрепить документ" Command="{Binding SelectDocumentCommand}" />
+                                                <MenuItem Header="Прикрепить тест" Command="{Binding AddTestCommand}" Visibility="{Binding CanAddTest, Converter={StaticResource BoolToVisConverter}}"/>
+                                                <CheckBox Style="{StaticResource jl-checkbox}" IsChecked="{Binding OptimizeMemory}" Content="Оптимизация" />
+                                                <MenuItem Header="Удалить" Command="{Binding RemovePageCommand}"/>
+                                            </ContextMenu>
+                                        </StackPanel.ContextMenu>
+
+                                        <Label Style="{StaticResource card-label}" Content="Название/путь: "/>
+                                        <Label Style="{StaticResource card-label}" Content="{Binding PageTitle}"/>
+
+                                        <Separator Background="{DynamicResource control-border-primary-brush}" Margin="20 0 0 0" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                        <Button Content="Настройки" imIcon:ButtonWithImage.Icon="{StaticResource IconSettings}" Style="{StaticResource jl-img-button}" Name="PageSettingsButton" Click="SettingsButton_Click"/>
+                                        <Button Style="{StaticResource jl-danger-button}" Content="Удалить" Command="{Binding RemovePageCommand}"/>
+
+                                    </StackPanel>
+                                    <ListView Background="Transparent" BorderThickness="0" ItemsSource="{Binding Tests}" ItemContainerStyle="{StaticResource jl-list-item}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Button Style="{StaticResource jl-primary-button}" Content="Просмотр" Command="{Binding ShowTestCommand}"/>
+                                                    <Label  Style="{StaticResource card-label}" HorizontalAlignment="Left" Content="{Binding Question}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                                
+                            </DataTemplate>
+
+                        </TreeView.Resources>
+                    </TreeView>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+        
+        <ContentControl Grid.Row="0" Visibility="{Binding IsTestDisplaying, Converter={StaticResource BoolToVisConverter}}" Content="{Binding TestCardViewModel}" />
+    </Grid>
+</UserControl>

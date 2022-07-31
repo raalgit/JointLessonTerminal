@@ -1,0 +1,49 @@
+﻿<Window x:Class="JLClient.MVVM.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JLClient"
+        xmlns:viewModel="clr-namespace:JLClient.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Title="Joint lesson терминал" 
+        WindowStyle="ToolWindow"
+        WindowState="Maximized"
+        Height="720" 
+        Width="1280">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </Window.Resources>
+    <Window.DataContext >
+        <viewModel:MainWindowViewModel></viewModel:MainWindowViewModel>
+    </Window.DataContext>
+    <Window.Background>
+        <ImageBrush x:Name="BackgoundPanel" />
+    </Window.Background>
+    <StackPanel Background="{DynamicResource main-background-brush}">
+        <Menu IsMainMenu="True" Margin="5">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="Профиль" Visibility="{Binding ShowBackToProfileButton, Converter={StaticResource BoolToVisConverter}}" Template="{StaticResource jl-menu-item-vs}" Command="{Binding BackToMainPageCommand}"/>
+            <MenuItem Header="Общее"  Template="{StaticResource jl-menu-item-vs}">
+                <MenuItem Header="О приложении" Name="Menu_AboutBtn" Template="{StaticResource jl-menu-item-sub}" Click="Menu_AboutBtn_Click" />
+                <MenuItem Header="Параметры" Name="Menu_SettingsBtn" Template="{StaticResource jl-menu-item-sub}"  Click="Menu_SettingsBtn_Click" />
+                <MenuItem Header="Темы" Name="Menu_StylesBtn" Template="{StaticResource jl-menu-item-sub}">
+                    <MenuItem Header="Базовая тема" Name="Menu_Styles_Base" Click="Menu_Styles_Base_Click" Template="{StaticResource jl-menu-item-sub}" Icon="../../Res/Images/base_theme_btn.png" />
+                    <MenuItem Header="Темная тема" Name="Menu_Styles_Dark" Click="Menu_Styles_Dark_Click" Template="{StaticResource jl-menu-item-sub}" Icon="../../Res/Images/dark_theme_btn.png" />
+                </MenuItem>
+                <MenuItem Header="Выход" Name="Menu_ExitBtn" Template="{StaticResource jl-menu-item-sub}" Click="Menu_ExitBtn_Click" />
+            </MenuItem>
+            <MenuItem Header="Кабинет редактора" Template="{StaticResource jl-menu-item-vs}">
+                <MenuItem Header="Автономный доступ (ограниченный)" Name="Menu_EditorOffline" Template="{StaticResource jl-menu-item-sub}"  Command="{Binding OpenEditorBaseAccessCommand}"/>
+                <MenuItem Visibility="{Binding ShowEditorFull, Converter={StaticResource BoolToVisConverter}}" Header="Полный доступ" Name="Menu_EditorOnline" Template="{StaticResource jl-menu-item-sub}" Command="{Binding OpenEditorFullAccessCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Выход" HorizontalAlignment="Right" Visibility="{Binding ShowExitFromProfile, Converter={StaticResource BoolToVisConverter}}" Template="{StaticResource jl-menu-item-vs}" Command="{Binding ExitFromProfileCommand}"/>
+        </Menu>
+
+        <ContentControl Background="Transparent" Content="{Binding CurrentView}"/>
+    </StackPanel>
+</Window>
